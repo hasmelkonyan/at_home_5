@@ -30,24 +30,16 @@ s = "one one was a rase horse, two two was a one too"
 
 
 def my_split(source, sep, count=-1):
-    my_count = 0
     lst = []
-    if count is not None:
-        while sep in source and (my_count < count or count == -1):
-            source_lst = [i for i in source]
-            index = source.find(sep)
-            item_lst = []
-            if index > 0:
-                for j in range(index):
-                    item_lst.append(source_lst[j])
-            item = "".join(item_lst)
-            lst.append(item)
-            del source_lst[0: index + len(sep)]
-            source = "".join(source_lst)
-            my_count += 1
-        else:
-            lst.append(source)
-        return lst
+    while sep in source and (count > 0 or count < 0):
+        index = source.find(sep)
+        if index > 0:
+            lst.append(source[0: index])
+        source = source.replace(source[0: index + len(sep)], "")
+        count -= 1
+    else:
+        lst.append(source)
+    return lst
     
 
 
