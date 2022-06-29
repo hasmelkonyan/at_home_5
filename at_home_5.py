@@ -31,7 +31,7 @@ s = "one one was a rase horse, two two was a one too"
 
 def my_split(source, sep, count=-1):
     lst = []
-    while sep in source and (count > 0 or count < 0):
+    while sep in source and count != 0:
         index = source.find(sep)
         if index > 0:
             lst.append(source[0: index])
