@@ -29,11 +29,11 @@ def my_replace(source, old, new, count=1):
 s = "one one was a rase horse, two two was a one too"
 
 
-def my_split(source, sep, count=None):
+def my_split(source, sep, count=-1):
     my_count = 0
     lst = []
     if count is not None:
-        while sep in source and my_count < count:
+        while sep in source and (my_count < count or count == -1):
             source_lst = [i for i in source]
             index = source.find(sep)
             item_lst = []
@@ -48,21 +48,7 @@ def my_split(source, sep, count=None):
         else:
             lst.append(source)
         return lst
-    else:
-        while sep in source:
-            source_lst = [i for i in source]
-            index = source.find(sep)
-            item_lst = []
-            if index > 0:
-                for j in range(index):
-                    item_lst.append(source_lst[j])
-            item = "".join(item_lst)
-            lst.append(item)
-            del source_lst[0: index + len(sep)]
-            source = "".join(source_lst)
-        else:
-            lst.append(source)
-        return lst
+    
 
 
 print(my_split(s, " ", 5))
